@@ -1,8 +1,18 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-const NotFound = () => {
+
+function NotFound() {
   return (
-    <div>NotFound</div>
+    <section className='page notfound'>
+    <div className='content'>
+    <img  className='bg-gray-700 ' src='/notfound.png' alt='notfound' />
+    <Link to={"/"} >RETURN TO HOME</Link>
+ 
+
+    </div>
+
+    </section>
   )
 }
 

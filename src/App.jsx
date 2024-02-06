@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import {Context} from "./main"
 
 import {BrowserRouter as Router ,Route, Routes} from "react-router-dom"
@@ -16,10 +16,28 @@ import MyApplication from "./components/Application/MyApplication"
 import NotFound from "./components/NotFound/NotFound"
 import axios from "axios"
 import Toaster from "react-hot-toast"
+import "./App.css";
+import "./index.css"
+
 
 
 const App = () => {
-  const {isAuthorized,setIsAuthorized,SetUser}=useContext(Context)
+const {isAuthorized,setIsAuthorized,SetUser}=useContext(Context)
+
+  useEffect(()=>{
+    const fetchUser=async ()=>{
+      try {
+        const response=await axios.get("",{withCredentials:true})
+        SetUser(response.data.user)
+        setIsAuthorized(true)
+        
+      } catch (error) {
+        setIsAuthorized(false)      
+      }
+    };
+
+    fetchUser();
+  },[isAuthorized])
 
 
 
@@ -38,7 +56,7 @@ const App = () => {
         <Route path='job/me' element={<MyJob/>} />
         <Route path='/application/:id' element={<Application/>} />
         <Route path='/application/me' element={<MyApplication/>} />
-        <Route path='*' element={<NotFound/>} />
+        <Route path='/*' element={<NotFound/>} />
 
         
       </Routes>
