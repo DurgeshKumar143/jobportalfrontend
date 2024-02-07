@@ -27,7 +27,7 @@ const {isAuthorized,setIsAuthorized,SetUser}=useContext(Context)
   useEffect(()=>{
     const fetchUser=async ()=>{
       try {
-        const response=await axios.get("",{withCredentials:true})
+        const response=await axios.get("/v1/user/getuser",{withCredentials:true})
         SetUser(response.data.user)
         setIsAuthorized(true)
         
