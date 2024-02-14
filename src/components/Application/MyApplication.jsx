@@ -124,10 +124,12 @@ const MyApplications = () => {
 export default MyApplications;
 
 const JobSeekerCard = ({ element, deleteApplication, openModal }) => {
+ 
   return (
     <>
       <div className="job_seeker_card">
         <div className="detail">
+        console.log(element)
           <p>
             <span>Name:</span> {element.name}
           </p>
@@ -135,13 +137,13 @@ const JobSeekerCard = ({ element, deleteApplication, openModal }) => {
             <span>Email:</span> {element.email}
           </p>
           <p>
-            <span>Phone:</span> {element.phone}
+            <span>Phone:</span> {element.mobile}
           </p>
           <p>
             <span>Address:</span> {element.address}
           </p>
           <p>
-            <span>CoverLetter:</span> {element.coverLetter}
+            <span>CoverLetter:</span> {element.coverleter}
           </p>
         </div>
         <div className="resume">
@@ -173,13 +175,13 @@ const EmployerCard = ({ element, openModal }) => {
             <span>Email:</span> {element.email}
           </p>
           <p>
-            <span>Phone:</span> {element.phone}
+            <span>Phone:</span> {element.mobile}
           </p>
           <p>
             <span>Address:</span> {element.address}
           </p>
           <p>
-            <span>CoverLetter:</span> {element.coverLetter}
+            <span>CoverLetter:</span> {element.coverleter}
           </p>
         </div>
         <div className="resume">
