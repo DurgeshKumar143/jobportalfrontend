@@ -2,7 +2,10 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import {ClockLoader} from "react-spinners"
 import { Context } from "../../main";
+import Swal from "sweetalert2";
+
 const PostJob = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -14,11 +17,13 @@ const PostJob = () => {
   const [salaryTo, setSalaryTo] = useState("");
   const [fixedSalary, setFixedSalary] = useState("");
   const [salaryType, setSalaryType] = useState("default");
+  const [loading,setLoading]=useState(false)
 
   const { isAuthorized, user } = useContext(Context);
 
   const handleJobPost = async (e) => {
     e.preventDefault();
+    setLoading(true)
     if (salaryType === "Fixed Salary") {
       setSalaryFrom("");
       setSalaryFrom("");
@@ -31,7 +36,7 @@ const PostJob = () => {
     }
     await axios
       .post(
-        "/api/v1/job/post",
+        "/api/v1/jobs/post",
         fixedSalary.length >= 4
           ? {
               title,
@@ -60,10 +65,28 @@ const PostJob = () => {
         }
       )
       .then((res) => {
-        toast.success(res.data.message);
+        Swal.fire({
+          position: "top-center",
+          icon: "success",
+          title: `${res.data.message}`,
+          showConfirmButton: false,
+          timer: 1500
+        });
+        
+        
+        setLoading(false)
       })
       .catch((err) => {
-        toast.error(err.response.data.message);
+        Swal.fire({
+          position: "top-center",
+          icon: "error",
+          title:`${err.response.data.message}`,
+          showConfirmButton: false,
+          timer: 1500
+        });
+        
+      
+        setLoading(false)
       });
   };
 
@@ -177,7 +200,7 @@ const PostJob = () => {
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Job Description"
             />
-            <button type="submit">Create Job</button>
+            <button type="submit" style={{display:'flex',alignItems:'center',justifyContent:'center'}}>{loading?<ClockLoader size={35} color='white'/>:<span>Create a job</span>}</button>
           </form>
         </div>
       </div>

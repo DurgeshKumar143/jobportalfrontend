@@ -15,9 +15,10 @@ import Application from "./components/Application/Application"
 import MyApplication from "./components/Application/MyApplication"
 import NotFound from "./components/NotFound/NotFound"
 import axios from "axios"
-import Toaster from "react-hot-toast"
+import {Toaster,  toast } from "react-hot-toast"
 import "./App.css";
 import "./index.css"
+import 'sweetalert2/src/sweetalert2.scss'
 
 
 
@@ -27,7 +28,7 @@ const {isAuthorized,setIsAuthorized,SetUser}=useContext(Context)
   useEffect(()=>{
     const fetchUser=async ()=>{
       try {
-         
+        
         const response=await axios.get("/api/v1/user/getuser",{withCredentials:true}) 
        
         SetUser(response.data.user)
@@ -45,7 +46,7 @@ const {isAuthorized,setIsAuthorized,SetUser}=useContext(Context)
 
   return (
      <>
-     
+     <Toaster toastOptions={{duration:3000}}/>
      <Router>
      <Navbar/>
       <Routes>
@@ -63,7 +64,7 @@ const {isAuthorized,setIsAuthorized,SetUser}=useContext(Context)
         
       </Routes>
       <Footer/>
-      <Toaster/>
+      
      </Router>
       
        

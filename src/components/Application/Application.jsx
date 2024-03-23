@@ -1,13 +1,15 @@
 import axios from "axios";
 import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
+import {} from "react-spinners"
 import { useNavigate, useParams } from "react-router-dom";
 import { Context } from "../../main";
+import Swal from "sweetalert2";
 const Application = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [coverLetter, setCoverLetter] = useState("");
-  const [phone, setPhone] = useState("");
+  const [coverleter, setCoverLetter] = useState("");
+  const [mobile, setMobile] = useState("");
   const [address, setAddress] = useState("");
   const [resume, setResume] = useState(null);
 
@@ -27,9 +29,9 @@ const Application = () => {
     const formData = new FormData();
     formData.append("name", name);
     formData.append("email", email);
-    formData.append("phone", phone);
+    formData.append("mobile", mobile);
     formData.append("address", address);
-    formData.append("coverLetter", coverLetter);
+    formData.append("coverleter", coverleter);
     formData.append("resume", resume);
     formData.append("jobId", id);
 
@@ -50,9 +52,25 @@ const Application = () => {
       setPhone("");
       setAddress("");
       setResume("");
-      toast.success(data.message);
+      Swal.fire({
+        position: "top-center",
+        icon: "success",
+        title: `${data.message}`,
+        showConfirmButton: false,
+        timer: 1500
+      });
+      
+    
       navigateTo("/job/getall");
     } catch (error) {
+      Swal.fire({
+        position: "top-center",
+        icon: "error",
+        title: `${error.response.data.message}`,
+        showConfirmButton: false,
+        timer: 1500
+      });
+      
       toast.error(error.response.data.message);
     }
   };
@@ -81,8 +99,8 @@ const Application = () => {
           <input
             type="number"
             placeholder="Your Phone Number"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
+            value={mobile}
+            onChange={(e) => setMobile(e.target.value)}
           />
           <input
             type="text"
@@ -92,7 +110,7 @@ const Application = () => {
           />
           <textarea
             placeholder="CoverLetter..."
-            value={coverLetter}
+            value={coverleter}
             onChange={(e) => setCoverLetter(e.target.value)}
           />
           <div>

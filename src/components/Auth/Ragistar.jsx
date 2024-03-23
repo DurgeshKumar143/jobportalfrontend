@@ -6,8 +6,10 @@ import { FaPencilAlt } from "react-icons/fa";
 import { FaPhoneFlip } from "react-icons/fa6";
 import { Link, Navigate } from "react-router-dom";
 import axios from 'axios';
+import {ClockLoader} from "react-spinners"
 import toast from 'react-hot-toast';
 import { Context } from '../../main';
+import Swal  from "sweetalert2"
 
 
 
@@ -19,16 +21,17 @@ const Ragistar = () => {
   const [mobile, setMobile] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
+  const [loading, setLoading] =useState(false)
 
   const {isAuthorized,setIsAuthorized,user,setUser} =useContext(Context)
 
   const handleRegister=async (e)=>{
     e.preventDefault()
     try {
+      setLoading(true)
 
-      console.log("THis is registered calling ",fullName)
 
-      const data=await axios.post(`/api/v1/user/register`,{fullName,password,email,role,mobile},
+      const {data}=await axios.post(`/api/v1/user/register`,{fullName,password,email,role,mobile},
       {
         headers:{
           "Content-Type":"application/json"
@@ -37,27 +40,40 @@ const Ragistar = () => {
       }
       )
       console.log("This is data section",data)
-      toast.success(data.message);
-      setName("")
-      setEmail("")
-      setPassword("")
-      setMobile("")
-      setRole("")
-      setIsAuthorized(true) 
+      Swal.fire({
+        position: "top-center",
+        icon: "success",
+        title: `${data.message}`,
+        showConfirmButton: false,
+        timer: 1500
+      });
+      
+      setIsAuthorized(true) ;
+      setLoading(false);
+      setName("");
+      setEmail("");
+      setPassword("");
+      setMobile("");
+      setRole("");
+      
     } catch (error) {
-       
-      toast.error(error.response.data.message);
+      setLoading(false)
+      Swal.fire({
+        position: "top-center",
+        icon: "success",
+        title: `${error.message}`,
+        showConfirmButton: false,
+        timer: 1500
+      });
+      toast.error(data.message);
+      
       
     }
 
     if(isAuthorized){
       return <Navigate to={'/'}/>
     }
-
-    
   }
-
-
   return (
     <>
     <section className="authPage">
@@ -73,7 +89,7 @@ const Ragistar = () => {
               <select value={role} onChange={(e) => setRole(e.target.value)}>
                 <option value="">Select Role</option>
                 <option value="Employer">Employer</option>
-                <option value="Jobseeker">Job seeker</option>
+                <option value="jobseeker">Job seeker</option>
               </select>
               <FaRegUser />
             </div>
@@ -85,7 +101,9 @@ const Ragistar = () => {
                 type="text"
                 placeholder="Name"
                 value={fullName}
-                onChange={(e) => setName(e.target.value)}
+                onChange={(e) => {
+                  
+                  setName(e.target.value)}}
               />
               <FaPencilAlt />
             </div>
@@ -126,8 +144,8 @@ const Ragistar = () => {
               <RiLock2Fill />
             </div>
           </div>
-          <button type="submit" onClick={handleRegister}>
-            Register
+          <button type="submit" onClick={handleRegister} style={{display:'flex',alignItems:'center',justifyContent:'center'}}>
+            {loading ? <ClockLoader size={35} color='white'/> : <span>Registion</span>}
           </button>
           <Link to={"/login"}>Login Now</Link>
         </form>

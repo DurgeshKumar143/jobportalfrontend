@@ -15,7 +15,7 @@ const Jobs = () => {
         })
         .then((res) => {
           setJobs(res.data);
-          console.log("THi is job section data ",res.data._id);
+          
         });
     } catch (error) {
       console.log(error);

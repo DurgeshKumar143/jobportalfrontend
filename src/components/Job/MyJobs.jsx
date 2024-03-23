@@ -5,6 +5,7 @@ import { FaCheck } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
 import { Context } from "../../main";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const MyJobs = () => {
   const [myJobs, setMyJobs] = useState([]);
@@ -20,9 +21,10 @@ const MyJobs = () => {
           "/api/v1/jobs/myjob",
           { withCredentials: true }
         );
-        setMyJobs(data.myJobs);
-        
+        setMyJobs(data.myjobs);
+      
       } catch (error) {
+        
         toast.error(error.response.data.message);
         setMyJobs([]);
       }
@@ -32,6 +34,7 @@ const MyJobs = () => {
   if (!isAuthorized || (user && user.role !== "Employer")) {
     navigateTo("/");
   }
+   
 
   //Function For Enabling Editing Mode
   const handleEnableEdit = (jobId) => {
@@ -52,27 +55,82 @@ const MyJobs = () => {
         withCredentials: true,
       })
       .then((res) => {
-        toast.success(res.data.message);
+        Swal.fire({
+          position: "top-center",
+          icon: "success",
+          title: `${res.data.message}`,
+          showConfirmButton: false,
+          timer: 1500
+        });    
+       // toast.success(res.data.message);
         setEditingMode(null);
       })
       .catch((error) => {
-        toast.error(error.response.data.message);
+        Swal.fire({
+          position: "top-center",
+          icon: "error",
+          title: `${error.response.data.message}`,
+          showConfirmButton: false,
+          timer: 1500
+        });
+        
+       // toast.error(error.response.data.message);
       });
   };
 
   //Function For Deleting Job
   const handleDeleteJob = async (jobId) => {
-    await axios
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then(async(result) => {
+      if (result.isConfirmed) {
+
+        await axios
       .delete(`/api/v1/jobs/delete/${jobId}`, {
         withCredentials: true,
       })
       .then((res) => {
-        toast.success(res.data.message);
+       // toast.success(res.data.message);
         setMyJobs((prevJobs) => prevJobs.filter((job) => job._id !== jobId));
       })
       .catch((error) => {
-        toast.error(error.response.data.message);
+        Swal.fire({
+          position: "top-center",
+          icon: "error",
+          title: `${error.response.data.message}`,
+          showConfirmButton: false,
+          timer: 1500
+        });
+        
+       // toast.error(error.response.data.message);
       });
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your Job has been deleted.",
+          icon: "success"
+        });
+      }
+    });
+    
+
+    // await axios
+    //   .delete(`/api/v1/jobs/delete/${jobId}`, {
+    //     withCredentials: true,
+    //   })
+    //   .then((res) => {
+    //     toast.success(res.data.message);
+    //     setMyJobs((prevJobs) => prevJobs.filter((job) => job._id !== jobId));
+    //   })
+    //   .catch((error) => {
+    //     toast.error(error.response.data.message);
+    //   });
   };
 
   const handleInputChange = (jobId, field, value) => {
@@ -93,7 +151,9 @@ const MyJobs = () => {
             <>
               <div className="banner">
                 {myJobs.map((element) => (
+                 
                   <div className="card" key={element._id}>
+                      
                     <div className="content">
                       <div className="short_fields">
                         <div>
