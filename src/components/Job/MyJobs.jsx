@@ -8,6 +8,13 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const MyJobs = () => {
+  useEffect(()=>{
+    document.title=`MY Jobs`
+
+  },[])
+
+
+
   const [myJobs, setMyJobs] = useState([]);
   const [editingMode, setEditingMode] = useState(null);
   const { isAuthorized, user } = useContext(Context);

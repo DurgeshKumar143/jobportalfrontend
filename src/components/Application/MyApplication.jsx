@@ -6,6 +6,13 @@ import { useNavigate } from "react-router-dom";
 import ResumeModal from "./ResumeModel";
 
 const MyApplications = () => {
+
+  useEffect(()=>{
+    document.title=`My Applications`;
+  },[])
+
+
+
   const { user } = useContext(Context);
   const [applications, setApplications] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);

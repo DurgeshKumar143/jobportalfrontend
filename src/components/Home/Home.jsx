@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Context } from '../../main'
 import {Navigate} from "react-router-dom"
 import HeroSection from './HeroSection'
@@ -7,6 +7,11 @@ import PopularCompanies from './PopularCompanies'
 import PopularCategories from './PopularCategory'
 
 const Home = () => {
+
+  useEffect(()=>{
+    document.title=`Home`
+
+  },)
   const {isAuthorized} =useContext(Context)
   if(!isAuthorized){
     return <Navigate to={'/login'}/>

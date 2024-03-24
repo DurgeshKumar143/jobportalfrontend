@@ -7,6 +7,12 @@ import { Context } from "../../main";
 import Swal from "sweetalert2";
 
 const PostJob = () => {
+  useEffect(()=>{
+    document.title=`Post Job`
+
+  },[])
+
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");

@@ -15,6 +15,10 @@ const Login = () => {
   const [role, setRole] = useState("");
   const [loading, setLoading] = useState(false);
 
+  useEffect(()=>{
+   document.title=`Login`
+
+  },[])
   const { isAuthorized, setIsAuthorized } = useContext(Context);
 
   const handleLogin = async (e) => {

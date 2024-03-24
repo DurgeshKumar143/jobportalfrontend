@@ -4,6 +4,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../../main";
 
 const Jobs = () => {
+
+  useEffect(()=>{
+    document.title=`Jobs`
+  },[])
+
+
+
   const [jobs, setJobs] = useState([]);
   const { isAuthorized } = useContext(Context);
   const navigateTo = useNavigate();

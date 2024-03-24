@@ -1,11 +1,21 @@
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import {} from "react-spinners"
 import { useNavigate, useParams } from "react-router-dom";
 import { Context } from "../../main";
 import Swal from "sweetalert2";
+
+
+
+
 const Application = () => {
+
+  useEffect(()=>{
+    document.title=`Application`
+  },[])
+
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [coverleter, setCoverLetter] = useState("");
