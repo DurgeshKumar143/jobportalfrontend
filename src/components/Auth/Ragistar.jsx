@@ -30,8 +30,8 @@ const Ragistar = () => {
     try {
       setLoading(true)
 
-
-      const {data}=await axios.post(`/register`,{fullName,password,email,role,mobile},
+      console.log("I am first login")
+      const {data}=await axios.post(`/api/v1/user/register`,{fullName,password,email,role,mobile},
       {
         headers:{
           "Content-Type":"application/json"

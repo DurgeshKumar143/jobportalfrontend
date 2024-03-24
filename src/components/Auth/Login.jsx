@@ -22,12 +22,11 @@ const Login = () => {
   const { isAuthorized, setIsAuthorized } = useContext(Context);
 
   const handleLogin = async (e) => {
-    console.log("Hello i am first Login")
     e.preventDefault();
     try {
       setLoading(true)
       const { data } = await axios.post(
-        "/login",
+        "/api/v1/user/login",
         { email, password, role },
         {
           headers: {
@@ -36,7 +35,6 @@ const Login = () => {
           withCredentials: true,
         }
       );
-      console.log("I am second Login")
       setLoading(false)
        
       toast.success(data.message);
