@@ -7,7 +7,7 @@ export default defineConfig({
   
     proxy:{
       '/api':{
-        target:"https://jobportal-krhe.onrender.com",
+        target:'https://jobportal-krhe.onrender.com',
         changeOrigin:true
       }
     }
