@@ -26,7 +26,7 @@ const Login = () => {
     try {
       setLoading(true)
       const { data } = await axios.post(
-        "/api/v1/user/login",
+        "/login",
         { email, password, role },
         {
           headers: {
