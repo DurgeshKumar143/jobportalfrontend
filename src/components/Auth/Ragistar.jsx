@@ -31,7 +31,7 @@ const Ragistar = () => {
       setLoading(true)
 
 
-      const {data}=await axios.post(`/api/v1/user/register`,{fullName,password,email,role,mobile},
+      const {data}=await axios.post(`/register`,{fullName,password,email,role,mobile},
       {
         headers:{
           "Content-Type":"application/json"
