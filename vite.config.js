@@ -7,7 +7,7 @@ export default defineConfig({
   
     proxy:{
       '/api':{
-        target:'https://jobportal-krhe.onrender.com',
+        target:'http://localhost:8000',
         changeOrigin:true
       }
     }
@@ -15,3 +15,4 @@ export default defineConfig({
 
   plugins: [react()],
 })
+// https://jobportal-krhe.onrender.com
