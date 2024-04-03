@@ -22,9 +22,11 @@ const Login = () => {
   const { isAuthorized, setIsAuthorized } = useContext(Context);
 
   const handleLogin = async (e) => {
+
     e.preventDefault();
     try {
       setLoading(true)
+      console.log("This is  first login cheack")
       const { data } = await axios.post(
         "/api/v1/user/login",
         { email, password, role },
@@ -36,6 +38,9 @@ const Login = () => {
         }
       );
       setLoading(false)
+      console.log("This is second  after data")
+      console.log("This is data section",data)
+      
        
       toast.success(data.message);
       setEmail("");
@@ -64,6 +69,8 @@ const Login = () => {
         });
 
       }else{
+        console.log("This is error section ")
+      console.log("This is error data section",error.data)
         Swal.fire({
           position: "top-center",
           icon: "error",
