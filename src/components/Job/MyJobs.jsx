@@ -100,7 +100,7 @@ const MyJobs = () => {
       if (result.isConfirmed) {
 
         await axios
-      .delete(`https://jobportal-krhe.onrender.com/api/v1/jobs/delete/${jobId}`, {
+      .delete(`/api/v1/jobs/delete/${jobId}`, {
         withCredentials: true,
       })
       .then((res) => {

@@ -42,7 +42,7 @@ const PostJob = () => {
     }
     await axios
       .post(
-        "https://jobportal-krhe.onrender.com/api/v1/jobs/post",
+        "/api/v1/jobs/post",
         fixedSalary.length >= 4
           ? {
               title,

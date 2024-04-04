@@ -17,7 +17,7 @@ const Jobs = () => {
   useEffect(() => {
     try {
       axios
-        .get("https://jobportal-krhe.onrender.com/api/v1/jobs/jobs", {
+        .get("/api/v1/jobs/jobs", {
           withCredentials: true,
         })
         .then((res) => {
