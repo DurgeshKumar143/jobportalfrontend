@@ -30,14 +30,14 @@ const MyApplications = () => {
     try {
       if (user && user.role === "Employer") {
         axios
-          .get("/api/v1/application/egetallapplication", {
+          .get("https://jobportal-krhe.onrender.com/api/v1/application/egetallapplication", {
             withCredentials: true,
           })
           .then((res) => {
             setApplications(res.data.application);
           });
       } else {
-        axios.get("/api/v1/application/jgetallapplication", {
+        axios.get("https://jobportal-krhe.onrender.com/api/v1/application/jgetallapplication", {
             withCredentials: true,
           })
           .then((res) => {
@@ -55,7 +55,7 @@ const MyApplications = () => {
 
   const deleteApplication = (id) => {
     try {
-      axios.delete(`/api/v1/application/delete/${id}`, {
+      axios.delete(`https://jobportal-krhe.onrender.com/api/v1/application/delete/${id}`, {
           withCredentials: true,
         })
         .then((res) => {

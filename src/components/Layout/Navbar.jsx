@@ -14,7 +14,7 @@ const Navbar = () => {
   const handleLogout = async () => {
     try {
       const response = await axios.get(
-        "/api/v1/user/logout",
+        "https://jobportal-krhe.onrender.com/api/v1/user/logout",
         {
           withCredentials: true,
         }
