@@ -50,9 +50,9 @@ const Navbar = () => {
   return (
     <nav className={isAuthorized ? "navbarShow" : "navbarHide"}>
       <div className="container" style={{top:0}}>
-        {/* <div className="logo">
+        <div className="logo">
           <img src="/logo2.png" alt="logo" />
-        </div> */}
+        </div>
         <ul className={!show ? "menu" : "show-menu menu"}>
           <li>
             <Link to={"/"} onClick={() => setShow(false)}>
