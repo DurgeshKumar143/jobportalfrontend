@@ -33,6 +33,7 @@ const {isAuthorized,setIsAuthorized,SetUser}=useContext(Context)
        
         SetUser(response.data.user)
         setIsAuthorized(true)
+        console.log("Thisi is response section ",response.data)
         
       } catch (error) {
         
