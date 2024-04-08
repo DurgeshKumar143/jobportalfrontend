@@ -60,12 +60,12 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link to={"https://jobportal-krhe.onrender.com/api/v1/jobs/getall"} onClick={() => setShow(false)}>
+            <Link to={"/jobs/getall"} onClick={() => setShow(false)}>
               ALL JOBS
             </Link>
           </li>
           <li>
-            <Link to={"https://jobportal-krhe.onrender.com/api/v1/application/me"} onClick={() => setShow(false)}>
+            <Link to={"/application/me"} onClick={() => setShow(false)}>
               {user && user.role === "Employer"
                 ? "APPLICANT'S APPLICATIONS"
                 : "MY APPLICATIONS"}
@@ -74,12 +74,12 @@ const Navbar = () => {
           {user && user.role === "Employer" ? (
             <>
               <li>
-                <Link to={"https://jobportal-krhe.onrender.com/api/v1/job/post"} onClick={() => setShow(false)}>
+                <Link to={"/job/post"} onClick={() => setShow(false)}>
                   POST NEW JOB
                 </Link>
               </li>
               <li>
-                <Link to={"https://jobportal-krhe.onrender.com/api/v1/job/me"} onClick={() => setShow(false)}>
+                <Link to={"/job/me"} onClick={() => setShow(false)}>
                   VIEW YOUR JOBS
                 </Link>
               </li>
