@@ -31,7 +31,7 @@ const Ragistar = () => {
       setLoading(true)
 
       console.log("I am first login")
-      const {data}=await axios.post(`/api/v1/user/register`,{fullName,password,email,role,mobile},
+      const {data}=await axios.post(`https://jobportal-krhe.onrender.com/api/v1/user/register`,{fullName,password,email,role,mobile},
       {
         headers:{
           "Content-Type":"application/json"
