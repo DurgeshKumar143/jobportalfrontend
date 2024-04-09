@@ -28,7 +28,7 @@ const {isAuthorized,setIsAuthorized,SetUser}=useContext(Context)
   useEffect(()=>{
     const fetchUser=async ()=>{
       try {
-        
+         console.log(" I am here to find get user information from user/getuser API ")
         const response=await axios.get("/api/v1/user/getuser",{withCredentials:true}) 
        
         SetUser(response.data.user)
