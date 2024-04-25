@@ -29,7 +29,7 @@ const Login = () => {
       setLoading(true)
       console.log("This is  first login cheack")
       const { data } = await axios.post(
-        "https://jobportal-krhe.onrender.com/api/v1/user/login",
+        "/api/v1/user/login",
         { email, password, role },
         {
           headers: {
