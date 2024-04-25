@@ -25,7 +25,7 @@ const MyJobs = () => {
     const fetchJobs = async () => {
       try {
         const { data } = await axios.get(
-          "https://jobportal-krhe.onrender.com/api/v1/jobs/myjob",
+          "/api/v1/jobs/myjob",
           { withCredentials: true }
         );
         setMyJobs(data.myjobs);
@@ -58,7 +58,7 @@ const MyJobs = () => {
   const handleUpdateJob = async (jobId) => {
     const updatedJob = myJobs.find((job) => job._id === jobId);
     await axios
-      .put(`https://jobportal-krhe.onrender.com/api/v1/jobs/update/${jobId}`, updatedJob, {
+      .put(`/api/v1/jobs/update/${jobId}`, updatedJob, {
         withCredentials: true,
       })
       .then((res) => {
