@@ -1,4 +1,0 @@
-[[redirects]]
-from = "/login"
-to = "/"
-status = 200

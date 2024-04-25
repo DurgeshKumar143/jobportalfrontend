@@ -11,6 +11,8 @@ const Navbar = () => {
   const { isAuthorized, setIsAuthorized, user } = useContext(Context);
   const navigateTo = useNavigate();
 
+  
+
   const handleLogout = async () => {
     try {
       const response = await axios.get(
@@ -31,6 +33,7 @@ const Navbar = () => {
        
       
       setIsAuthorized(false);
+
       navigateTo("/login");
     } catch (error) {
       Swal.fire({
