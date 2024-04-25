@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { RiLock2Fill } from "react-icons/ri";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { FaRegUser } from "react-icons/fa";
 import {toast,Toaster} from "react-hot-toast"
 import axios from "axios";
@@ -14,6 +14,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(()=>{
    document.title=`Login`
@@ -53,6 +54,7 @@ const Login = () => {
         showConfirmButton: false,
         timer: 1500
       });
+      navigate("/")
       
     } catch (error) {
 
