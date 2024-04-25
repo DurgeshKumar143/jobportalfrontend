@@ -29,7 +29,7 @@ const {isAuthorized,setIsAuthorized,SetUser}=useContext(Context)
     const fetchUser=async ()=>{
       try {
           
-        const response=await axios.get("/api/v1/user/getuser",{withCredentials:true}) 
+        const response=await axios.get("https://jobportal-krhe.onrender.com/api/v1/user/getuser",{withCredentials:true}) 
        
         SetUser(response.data.user)
         setIsAuthorized(true)
