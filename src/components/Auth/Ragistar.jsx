@@ -113,7 +113,7 @@ const Ragistar = () => {
             <div>
               <input
                 type="email"
-                placeholder="zk@example.com"
+                placeholder="dk@gmail.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
