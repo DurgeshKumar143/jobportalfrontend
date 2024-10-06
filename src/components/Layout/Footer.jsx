@@ -10,7 +10,7 @@ const Footer = () => {
   console.log("THis is footer authenticated",isAuthorized)
   return (
     <footer className={isAuthorized ? "footerShow" : "footerHide"}>
-    <div>&copy; All Rights </div>
+    <div>&copy; Dovelop By Durgesh kumar All Rights Reserved </div>
     <div>
       <Link to={" "} target="_blank">
         <FaFacebookF />
