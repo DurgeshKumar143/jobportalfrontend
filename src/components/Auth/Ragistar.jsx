@@ -6,7 +6,7 @@ import { FaPencilAlt } from "react-icons/fa";
 import { FaPhoneFlip } from "react-icons/fa6";
 import { Link, Navigate } from "react-router-dom";
 import axios from 'axios';
-import {ClockLoader} from "react-spinners"
+import {ClockLoader,MoonLoader} from "react-spinners"
 import toast from 'react-hot-toast';
 import { Context } from '../../main';
 import Swal  from "sweetalert2"
